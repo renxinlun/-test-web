@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:cutesource="http://blog.csdn.net/cutesource/schema/people"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://blog.csdn.net/cutesource/schema/people http://blog.csdn.net/cutesource/schema/people.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	<cutesource:people id="cutesource" name="袁志俊" age="27"/>
+
+
+
+	<context:component-scan base-package="com.renxinlun.service"/>
+
+	<context:annotation-config/>
+
+	<bean id="test123" class="com.renxinlun.service.TestBean">
+		<property name="name" value="renxinlun	"/>
+		<property name="age" value="123"/>
+		<property name="integerList">
+			<list>
+				<value>1</value>
+				<ref bean="PersonBean" />
+				<bean class="com.renxinlun.service.Person">
+					<property name="name" value="mkyongList" />
+					<property name="address" value="address" />
+					<property name="age" value="28" />
+				</bean>
+			</list>
+		</property>
+		<!-- java.util.Set -->
+		<property name="sets">
+			<set>
+				<value>1</value>
+				<ref bean="PersonBean" />
+				<bean class="com.renxinlun.service.Person">
+					<property name="name" value="mkyongSet" />
+					<property name="address" value="address" />
+					<property name="age" value="28" />
+				</bean>
+			</set>
+		</property>
+
+		<!-- java.util.Map -->
+		<property name="maps">
+			<map>
+				<entry key="Key 1" value="1" />
+				<entry key="Key 2" value-ref="PersonBean" />
+				<entry key="Key 3">
+					<bean class="com.renxinlun.service.Person">
+						<property name="name" value="mkyongMap" />
+						<property name="address" value="address" />
+						<property name="age" value="28" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+
+		<!-- java.util.Properties -->
+		<property name="pros">
+			<props>
+				<prop key="admin">admin@nospam.com</prop>
+				<prop key="support">support@nospam.com</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="PersonBean" class="com.renxinlun.service.Person">
+		<property name="name" value="mkyong1" />
+		<property name="address" value="address 1" />
+		<property name="age" value="28" />
+	</bean>
+
+</beans>
